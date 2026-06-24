@@ -4,16 +4,29 @@ import { useState } from "react";
 export default function Contact() {
   const [buttonText, setButtonText] = useState("Send Message");
   const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSending(true);
-    setButtonText("Sent ✓");
-    setTimeout(() => {
-      setButtonText("Send Message");
-      setIsSending(false);
-      (e.target as HTMLFormElement).reset();
-    }, 2200);
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+    };
+    try {
+      setStatus('sending');
+      await fetch('https://script.google.com/macros/s/AKfycbw-lx13H46ymT5-MtCIgjFOdNgK9Tleci4b-BtGs2t0-6wgYeOoIfGw9fHV7ACUyQXh/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      setStatus('sent');
+      form.reset();
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -44,12 +57,15 @@ export default function Contact() {
           </div>
 
           <form className="space-y-4 reveal" onSubmit={handleSubmit}>
-            <input type="text" required placeholder="Your Name" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all" />
-            <input type="email" required placeholder="Your Email" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all" />
-            <textarea required rows={4} placeholder="Your Message" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all resize-none"></textarea>
+            <input type="text" name="name" required placeholder="Your Name" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all" />
+            <input type="email" name="email" required placeholder="Your Email" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all" />
+            <textarea required name="message" rows={4} placeholder="Your Message" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all resize-none"></textarea>
             <button type="submit" disabled={isSending} className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink to-pink-deep px-6 py-3 text-sm font-semibold shadow-neon hover:shadow-neonLg transition-all disabled:opacity-70">
               {buttonText}
             </button>
+            {status === 'sending' && <p className="text-pink-400 text-sm text-center mt-2">Sending...</p>}
+            {status === 'sent' && <p className="text-green-400 text-sm text-center mt-2">✓ Message sent!</p>}
+            {status === 'error' && <p className="text-red-400 text-sm text-center mt-2">Something went wrong. Try again.</p>}
           </form>
         </div>
       </div>
