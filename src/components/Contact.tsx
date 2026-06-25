@@ -2,8 +2,7 @@
 import { useState } from "react";
 
 export default function Contact() {
-  const [buttonText, setButtonText] = useState("Send Message");
-  const [isSending, setIsSending] = useState(false);
+
   const [status, setStatus] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,8 +59,8 @@ export default function Contact() {
             <input type="text" name="name" required placeholder="Your Name" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all" />
             <input type="email" name="email" required placeholder="Your Email" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all" />
             <textarea required name="message" rows={4} placeholder="Your Message" className="w-full rounded-xl bg-panel border border-white/10 px-4 py-3 text-sm placeholder-gray-500 focus:outline-none focus:border-pink focus:shadow-neon transition-all resize-none"></textarea>
-            <button type="submit" disabled={isSending} className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink to-pink-deep px-6 py-3 text-sm font-semibold shadow-neon hover:shadow-neonLg transition-all disabled:opacity-70">
-              {buttonText}
+            <button type="submit" disabled={status === 'sending'} className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink to-pink-deep px-6 py-3 text-sm font-semibold shadow-neon hover:shadow-neonLg transition-all disabled:opacity-70">
+              Send Message
             </button>
             {status === 'sending' && <p className="text-pink-400 text-sm text-center mt-2">Sending...</p>}
             {status === 'sent' && <p className="text-green-400 text-sm text-center mt-2">✓ Message sent!</p>}

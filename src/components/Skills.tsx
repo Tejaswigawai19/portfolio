@@ -8,12 +8,14 @@ export default function Skills() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const bars = entry.target.querySelectorAll('.skillbar');
-          bars.forEach((bar: any) => {
-            bar.style.width = bar.getAttribute('data-fill') + '%';
+          bars.forEach((bar: unknown) => {
+            const htmlBar = bar as HTMLElement;
+            htmlBar.style.width = htmlBar.getAttribute('data-fill') + '%';
           });
           const percentages = entry.target.querySelectorAll('[data-pct]');
-          percentages.forEach((pct: any) => {
-            pct.textContent = pct.getAttribute('data-pct') + '%';
+          percentages.forEach((pct: unknown) => {
+            const htmlPct = pct as HTMLElement;
+            htmlPct.textContent = htmlPct.getAttribute('data-pct') + '%';
           });
           observer.unobserve(entry.target);
         }

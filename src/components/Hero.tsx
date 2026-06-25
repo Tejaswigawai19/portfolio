@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -29,10 +29,10 @@ export default function Hero() {
           <p className="tracking-[.35em] text-xs text-pink-soft font-semibold mb-3">TEJASWI GAWAI</p>
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight flex items-center justify-center lg:justify-start gap-3 flex-wrap">
             <svg className="w-5 h-5 lg:w-6 lg:h-6 text-pink shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/></svg>
-            <span>Hi, I'm <span className="text-gradient">TEJASWI</span></span>
+            <span>Hi, I&apos;m <span className="text-gradient">TEJASWI</span></span>
             <svg className="w-5 h-5 lg:w-6 lg:h-6 text-pink shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/></svg>
           </h1>
-          <p className="mt-3 text-xl lg:text-2xl font-display font-semibold text-pink-soft">I'm a <span>{text}</span><span className="animate-blink">|</span></p>
+          <p className="mt-3 text-xl lg:text-2xl font-display font-semibold text-pink-soft">I&apos;m a <span>{text}</span><span className="animate-blink">|</span></p>
           <p className="mt-5 text-gray-400 text-sm lg:text-base max-w-md mx-auto lg:mx-0 leading-relaxed">
             Results-driven Software Developer with proven experience building AI-powered applications, computer vision pipelines, and full-stack web solutions.
           </p>
