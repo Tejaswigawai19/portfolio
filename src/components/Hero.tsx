@@ -38,8 +38,8 @@ export default function Hero() {
           </p>
           <div className="mt-7 flex justify-center lg:justify-start">
             <a
-              href="/Tejaswi_gawai_cv.pdf"
-              download="Tejaswi_gawai_cv.pdf"
+              href="/Tejaswi_Gawai_cv.pdf"
+              download="Tejaswi_Gawai_cv.pdf"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink to-pink-deep px-7 py-3 text-sm font-semibold shadow-neon hover:shadow-neonLg hover:-translate-y-0.5 transition-all">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
               Download CV
