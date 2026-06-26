@@ -13,6 +13,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://tejaswigawai.space'),
   title: "Tejaswi Gawai — Software Developer Portfolio",
   description: "Portfolio website of Tejaswi Gawai",
   openGraph: {
